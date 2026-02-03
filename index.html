@@ -188,6 +188,11 @@
             0%, 100% { opacity: 0.5; transform: scale(1); }
             50%      { opacity: 0.85; transform: scale(1.08); }
         }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -233,8 +238,15 @@
         }
 
         function handleYes() {
-            document.querySelector('.buttons').parentElement.style.display = 'none';
+            // Hide question + buttons
+            document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            document.querySelector('.subtitle').style.display = 'none';
+
+            // Show the romantic response
             document.getElementById('response').classList.add('show');
+
+            // Extra sparkle celebration
             celebration();
         }
 
