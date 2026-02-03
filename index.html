@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be Mine? 💫</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+    <title>A Special Question For You 💝</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;600&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -15,255 +14,490 @@
         }
 
         body {
-            font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, #f9e1e8 0%, #e0d4f0 50%, #d7e4f9 100%);
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ff9a9e 50%, #fecfef 75%, #feada6 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            color: #4a2c3f;
+            position: relative;
         }
 
-        /* Gentle floating sparkle + tiny hearts */
-        .sparkle, .tiny-heart {
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .heart {
             position: absolute;
-            pointer-events: none;
-            opacity: 0;
-            animation: drift linear infinite;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 105, 135, 0.6);
+            transform: rotate(45deg);
+            animation: float 8s infinite;
         }
 
-        .sparkle {
-            width: 3px;
-            height: 3px;
-            background: white;
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            box-shadow: 0 0 8px rgba(255,255,255,0.9);
+            background: rgba(255, 105, 135, 0.6);
         }
 
-        .tiny-heart {
-            font-size: 14px;
-            color: rgba(255, 105, 180, 0.6);
-            text-shadow: 0 0 6px rgba(255,182,193,0.8);
+        .heart:before {
+            top: -10px;
+            left: 0;
         }
 
-        @keyframes drift {
-            0%   { transform: translateY(100vh) scale(0.4) rotate(0deg); opacity: 0; }
-            10%  { opacity: 0.7; }
-            90%  { opacity: 0.7; }
-            100% { transform: translateY(-30vh) scale(0.8) rotate(360deg); opacity: 0; }
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(405deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .rose {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.2;
+            animation: floatRose 20s infinite;
+        }
+
+        @keyframes floatRose {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
         }
 
         .container {
-            background: rgba(255, 250, 252, 0.38);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 182, 193, 0.25);
-            border-radius: 42px;
-            padding: 80px 65px;
-            max-width: 620px;
-            width: 90%;
-            box-shadow: 0 20px 80px rgba(216, 191, 216, 0.35);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 70px 60px;
+            border-radius: 40px;
+            box-shadow: 0 30px 80px rgba(255, 105, 135, 0.4),
+                        0 0 0 1px rgba(255, 255, 255, 0.5);
             text-align: center;
+            max-width: 600px;
+            width: 90%;
             position: relative;
-            z-index: 5;
-            animation: softAppear 2.2s ease-out;
+            z-index: 10;
+            border: 3px solid transparent;
+            background-clip: padding-box;
         }
 
-        @keyframes softAppear {
-            from { opacity: 0; transform: translateY(40px) scale(0.96); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #ff6b9d, #feca57, #ff6b9d);
+            border-radius: 40px;
+            z-index: -1;
+            opacity: 0.6;
+            animation: borderGlow 3s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 5.2rem;
-            color: #c85a8e;
-            margin-bottom: 12px;
-            letter-spacing: 4px;
-            text-shadow: 0 4px 20px rgba(200, 90, 142, 0.28);
+            background: linear-gradient(135deg, #ff6b9d 0%, #c92a49 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: gentlePulse 3s ease-in-out infinite;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.3));
+            }
+            50% {
+                transform: scale(1.03);
+                filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+            }
         }
 
         .subtitle {
-            font-size: 1.9rem;
-            color: #6b4e5e;
-            margin-bottom: 60px;
+            font-family: 'Dancing Script', cursive;
+            color: #ff6b9d;
+            font-size: 1.3em;
+            margin-bottom: 35px;
+            opacity: 0.8;
+        }
+
+        .question {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .subtext {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 40px;
             font-style: italic;
-            opacity: 0.95;
+            opacity: 0.9;
         }
 
         .buttons {
             display: flex;
+            gap: 25px;
             justify-content: center;
-            gap: 90px;
-            margin-top: 50px;
+            margin-top: 35px;
+            flex-wrap: wrap;
         }
 
         button {
-            padding: 18px 64px;
-            font-size: 1.45rem;
+            padding: 18px 50px;
+            font-size: 1.3em;
             border: none;
-            border-radius: 999px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            font-family: 'Cormorant Garamond', serif;
+            transition: all 0.4s ease;
             font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
         }
 
         .yes-btn {
-            background: linear-gradient(135deg, #ff9ec1 0%, #ff85b3 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #c92a49 100%);
             color: white;
-            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .yes-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .yes-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .yes-btn:hover {
-            transform: scale(1.14) translateY(-6px);
-            box-shadow: 0 16px 60px rgba(255, 105, 180, 0.55);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.5);
         }
 
         .no-btn {
-            background: rgba(255,255,255,0.22);
-            color: #7a5b6f;
-            border: 1px solid rgba(216, 191, 216, 0.4);
-            backdrop-filter: blur(6px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #e0e0e0 0%, #cfcfcf 100%);
+            color: #666;
+            position: relative;
         }
 
         .no-btn:hover {
-            background: rgba(255, 182, 193, 0.18);
-            transform: scale(0.94);
+            background: linear-gradient(135deg, #d0d0d0 0%, #bfbfbf 100%);
+            transform: scale(1.05);
         }
 
         .response {
             display: none;
-            margin-top: 40px;
-            animation: fadeUp 1.4s ease-out;
         }
 
         .response.show {
             display: block;
+            animation: fadeInUp 0.8s ease-in;
         }
 
-        .big-heart {
-            font-size: 11rem;
-            margin: 20px 0 30px;
-            animation: gentleBeat 3.2s ease-in-out infinite;
-            color: #e84a76;
-            text-shadow: 0 0 40px rgba(232, 74, 118, 0.45);
-        }
-
-        @keyframes gentleBeat {
-            0%, 100% { transform: scale(1); }
-            45%      { transform: scale(1.12); }
-            70%      { transform: scale(1.03); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .response h2 {
             font-family: 'Dancing Script', cursive;
-            font-size: 5.8rem;
-            color: #b03a6c;
-            margin-bottom: 30px;
-            text-shadow: 0 6px 25px rgba(176, 58, 108, 0.3);
+            background: linear-gradient(135deg, #ff6b9d 0%, #c92a49 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3em;
+            margin-bottom: 25px;
+            font-weight: 700;
         }
 
         .response p {
-            font-size: 1.6rem;
-            color: #5c3f50;
+            color: #444;
+            font-size: 1.4em;
             line-height: 1.8;
-            max-width: 88%;
-            margin: 0 auto;
-            font-style: italic;
+            margin-bottom: 15px;
         }
 
-        /* Soft central glow */
-        .dream-glow {
+        .big-heart {
+            font-size: 6em;
+            margin: 20px 0;
+            animation: heartbeat 1.2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10% {
+                transform: scale(1.15);
+            }
+            20% {
+                transform: scale(1);
+            }
+            30% {
+                transform: scale(1.15);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .sparkle {
             position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 40%, rgba(255,182,193,0.22) 0%, transparent 65%);
-            pointer-events: none;
-            z-index: -2;
-            animation: breathe 14s ease-in-out infinite;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkleAnim 2s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        @keyframes breathe {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50%      { opacity: 0.85; transform: scale(1.08); }
+        @keyframes sparkleAnim {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .love-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2em;
+            color: #ff6b9d;
+            margin-top: 20px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 50px 30px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .question {
+                font-size: 1.5em;
+            }
+            
+            button {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
 <body>
-
-    <div class="dream-glow"></div>
-
     <div class="container">
-        <h1>🌸 My Heart 🌸</h1>
-        <p class="subtitle">Will you be my Valentine… and light up all my tomorrows? 💗</p>
-
-        <div class="buttons">
-            <button class="yes-btn" onclick="handleYes()">Yes 💞</button>
-            <button class="no-btn" id="noBtn" onclick="handleNo(event)">No</button>
+        <h1>💕 My Dearest Valentine 💕</h1>
+        <p class="subtitle">I have something special to ask you...</p>
+        
+        <div class="question-container">
+            <p class="question">Would you make me the happiest by being my Valentine?</p>
+            <p class="subtext">Every moment with you feels like a fairytale ✨</p>
+            <div class="buttons">
+                <button class="yes-btn" onclick="handleYes()">Yes, Forever! 💖</button>
+                <button class="no-btn" id="noBtn" onclick="handleNo(event)">Maybe Not...</button>
+            </div>
         </div>
-
+        
         <div class="response" id="response">
-            <div class="big-heart">💗</div>
-            <h2>You said yes… 🥹✨</h2>
-            <p>My world just became a thousand times softer and brighter.<br>Thank you for being my favorite forever.</p>
+            <div class="big-heart">❤️</div>
+            <h2>You Said Yes!</h2>
+            <p>My heart is overflowing with joy! ✨</p>
+            <p>You've just made this the most magical day ever. I can't wait to create beautiful memories together this Valentine's Day!</p>
+            <p class="love-message">Forever grateful for you 🌹</p>
         </div>
     </div>
 
     <script>
-        // Gentle sparkle + tiny hearts
-        function createParticle() {
-            const isHeart = Math.random() > 0.6;
-            const el = document.createElement('div');
-            el.className = isHeart ? 'tiny-heart' : 'sparkle';
-            if (isHeart) el.textContent = '♡';
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (Math.random() * 18 + 14) + 's';
-            el.style.animationDelay = Math.random() * 5 + 's';
-            document.body.appendChild(el);
-            setTimeout(() => el.remove(), 25000);
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
         }
 
-        setInterval(createParticle, 380);
+        // Create floating roses
+        function createRose() {
+            const rose = document.createElement('div');
+            rose.className = 'rose';
+            rose.textContent = '🌹';
+            rose.style.left = Math.random() * 100 + 'vw';
+            rose.style.top = Math.random() * 100 + 'vh';
+            rose.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            document.body.appendChild(rose);
 
-        function celebration() {
-            for(let i = 0; i < 60; i++) {
-                setTimeout(createParticle, i * 80);
-            }
+            setTimeout(() => {
+                rose.remove();
+            }, 25000);
+        }
+
+        // Create sparkles
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Initialize animations
+        setInterval(createHeart, 400);
+        setInterval(createRose, 3000);
+
+        // Create initial hearts
+        for(let i = 0; i < 15; i++) {
+            setTimeout(createHeart, i * 200);
+        }
+
+        // Create initial roses
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createRose, i * 500);
         }
 
         function handleYes() {
-            // Hide question + buttons
-            document.querySelector('.buttons').style.display = 'none';
-            document.querySelector('h1').style.display = 'none';
-            document.querySelector('.subtitle').style.display = 'none';
-
-            // Show the romantic response
+            document.querySelector('.question-container').style.display = 'none';
             document.getElementById('response').classList.add('show');
+            
+            // Create massive celebration effect
+            for(let i = 0; i < 100; i++) {
+                setTimeout(createHeart, i * 30);
+            }
 
-            // Extra sparkle celebration
-            celebration();
+            // Create sparkles
+            const container = document.querySelector('.container');
+            const rect = container.getBoundingClientRect();
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const x = rect.left + Math.random() * rect.width;
+                    const y = rect.top + Math.random() * rect.height;
+                    createSparkle(x, y);
+                }, i * 50);
+            }
         }
 
-        function handleNo(e) {
-            const btn = e.target;
-            const maxX = window.innerWidth - btn.offsetWidth - 80;
-            const maxY = window.innerHeight - btn.offsetHeight - 80;
-
-            const x = Math.random() * maxX;
-            const y = Math.random() * maxY;
-
+        let noBtnMoves = 0;
+        function handleNo(event) {
+            const btn = event.target;
+            noBtnMoves++;
+            
+            // Make "No" button smaller and change text after multiple attempts
+            if (noBtnMoves > 3) {
+                btn.textContent = "You sure? 🥺";
+                btn.style.fontSize = "1.1em";
+            }
+            if (noBtnMoves > 6) {
+                btn.textContent = "Really? 😢";
+                btn.style.fontSize = "1em";
+            }
+            if (noBtnMoves > 9) {
+                btn.textContent = "Pretty please? 🙏";
+                btn.style.fontSize = "0.9em";
+            }
+            
+            const maxX = window.innerWidth - btn.offsetWidth - 100;
+            const maxY = window.innerHeight - btn.offsetHeight - 100;
+            
+            const randomX = Math.max(50, Math.random() * maxX);
+            const randomY = Math.max(50, Math.random() * maxY);
+            
             btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top  = y + 'px';
-            btn.style.transition = 'all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            btn.style.opacity = '0.8';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+            btn.style.transition = 'all 0.3s ease';
+            
+            // Make yes button bigger to encourage clicking it
+            const yesBtn = document.querySelector('.yes-btn');
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 1) + 'px';
         }
+
+        // Add mouse move sparkles
+        let lastSparkleTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastSparkleTime > 100) {
+                if (Math.random() > 0.7) {
+                    createSparkle(e.clientX, e.clientY);
+                }
+                lastSparkleTime = now;
+            }
+        });
     </script>
 </body>
 </html>
